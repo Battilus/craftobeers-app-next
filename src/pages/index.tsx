@@ -70,8 +70,8 @@ const Home: NextPage<IProps> = ({meta}) => {
                             {beerName && isSuccess ?
                                 <div className="text-xl">Not found</div> :
                                 <>
-                                    <div className="font-semibold text-xl mb-2">Welcome to the Craftobeers App!)</div>
-                                    <div className="text-lg mb-6">Use the search to find the description of the beer you are
+                                    <div className="font-semibold text-base sm:text-xl mb-2">Welcome to the Craftobeers App!)</div>
+                                    <div className="text-sm sm:text-lg mb-6 w-52 sm:w-full text-center">Use the search to find the description of the beer you are
                                         looking for.
                                     </div>
                                     <div className="text-sm">Based on <Link href={"https://punkapi.com/documentation/v2"} className="text-violet-600">Punk Api</Link></div>

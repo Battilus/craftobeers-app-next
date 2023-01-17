@@ -10,18 +10,18 @@ interface IProps {
 
 const Header: FC<IProps> = ({beerSearchName, setBeerSearchName}) => {
     return (
-        <header className="sticky top-0 left-0 w-screen h-16 bg-matterhorn flex items-center justify-between p-4 z-10">
+        <header className="sticky top-0 left-0 w-screen h-16 bg-matterhorn flex items-center justify-between p-4 z-10 gap-1.5">
             <Link
-                className="flex items-center gap-5"
+                className="flex items-center gap-1.5 sm:gap-5"
                 href={"/"}
             >
                 <BeerCanLogo className="text-white w-6.5 h-9"/>
-                <div className="text-white font-semibold uppercase">Craftobeers</div>
+                <div className="text-white font-semibold uppercase text-sm sm:text-base">Craftobeers</div>
             </Link>
             {setBeerSearchName &&
                 <div className="relative">
                     <input
-                        className="rounded-sm p-1.5 outline-none sm:min-w-[20rem] text-matterhorn"
+                        className="rounded-sm p-1.5 outline-none w-full max-w-[10rem] sm:max-w-auto sm:min-w-[20rem] text-matterhorn"
                         placeholder="Find your beer"
                         value={beerSearchName}
                         onChange={(event) => setBeerSearchName(event.target.value)}
