@@ -43,7 +43,7 @@ const Beer: NextPage<IProps> = ({meta}) => {
                     {isSuccess &&
                         <>
                             <div className="flex gap-5">
-                                <div className="w-36">
+                                <div className="w-24 sm:w-36">
                                     {beerDescription.image_url ?
                                         <Image
                                             className="object-contain"
@@ -60,7 +60,7 @@ const Beer: NextPage<IProps> = ({meta}) => {
                                     <div className="text-sm">{beerDescription.tagline}</div>
                                 </div>
                             </div>
-                            <div>{beerDescription.description}</div>
+                            <div className="w-full text-justify">{beerDescription.description}</div>
                             <div className="text-sm">Beer Alcohol Content: <span className="font-semibold">{` ${beerDescription.abv}%`}</span></div>
                             <div className="flex flex-col gap-3">
                                 <div className="font-semibold">Food pairing:</div>
