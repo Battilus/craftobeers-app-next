@@ -66,7 +66,7 @@ const Home: NextPage<IProps> = ({meta}) => {
                                 />
                             </div>
                         </div> :
-                        <div className="h-full text-matterhorn flex flex-col items-center justify-center h-[80vh]">
+                            <div className="h-full text-matterhorn flex flex-col items-center justify-center h-[80vh]">
                             {beerName && isSuccess ?
                                 <div className="text-xl">Not found</div> :
                                 <>

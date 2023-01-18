@@ -55,3 +55,9 @@ export type BeerDescription = {
     brewers_tips: string,
     contributed_by: string,
 }
+
+export type BeerResponseError = {
+    error: string,
+    message: string,
+    statusCode: string | number,
+}

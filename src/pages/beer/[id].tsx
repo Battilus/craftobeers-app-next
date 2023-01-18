@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {useEffect, useMemo} from 'react';
 import {GetServerSideProps, NextPage} from "next";
 import PageWrapper from "@/components/PageWrapper";
-import {BeerDescription} from "@/types/beerApi";
+import {BeerDescription, BeerResponseError} from "@/types/beerApi";
 import {PageMeta} from "@/types";
 import Image from "next/image";
 import {fetchBeerById, fetchBeersByName} from "@/features/api";
@@ -22,10 +22,9 @@ const Beer: NextPage<IProps> = ({meta}) => {
 
     const {
         isSuccess,
-        data: beerDescription,
+        data,
         isLoading,
-        // isError
-    } = useQuery<BeerDescription>(
+    } = useQuery<BeerDescription | BeerResponseError>(
         ["getBeerDescription", beerID],
         () => fetchBeerById(beerID),
         {
@@ -34,13 +33,22 @@ const Beer: NextPage<IProps> = ({meta}) => {
         }
     );
 
+    const beerDescription = useMemo(() => data && "tagline" in (data as BeerDescription) ? data as BeerDescription : null,[data]);
+    const beerResponseError = useMemo(() => data && "statusCode" in (data as BeerResponseError) ? data as BeerResponseError : null,[data]);
+
+    useEffect(() => {
+        if (beerResponseError && beerResponseError.statusCode === 404) {
+            router.push("/404");
+        }
+    }, [beerResponseError])
+
     return (
         <PageWrapper meta={meta}>
             <Header/>
             <div className="w-full flex flex-col items-center p-4">
                 <div className="w-full max-w-[720px] flex flex-col gap-6">
                     {isLoading && <DescriptionSkeleton/>}
-                    {isSuccess &&
+                    {(isSuccess && beerDescription) &&
                         <>
                             <div className="flex gap-5">
                                 <div className="w-24 sm:w-36">
